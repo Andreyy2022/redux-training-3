@@ -1,5 +1,10 @@
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import Root from './app/root';
+
+const router = createBrowserRouter([{ path: '/', element: <Root /> }]);
+
 function App() {
-    return <h2>This is my Redux app!</h2>
+    return <RouterProvider router={router} />
 }
 
 export default App;
