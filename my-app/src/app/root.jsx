@@ -1,3 +1,5 @@
+import { StudentsList } from "../parts/students/StudentsList";
+
 function Root() {
     return (
         <div id="main">
@@ -8,8 +10,9 @@ function Root() {
                 </nav>
             </div>
             <div id="main_page">
-                <h2>This is my first Ridux app!</h2>
+                <h2>My Students App</h2>
                 <hr></hr>
+                <StudentsList />
             </div>
         </div>
     )
