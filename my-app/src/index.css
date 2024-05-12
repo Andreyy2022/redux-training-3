@@ -35,3 +35,24 @@ a {
     border-right: 2px solid lightgray;
     font-weight: bold;
 }
+
+#main-page {
+    max-width: 600px;
+}
+
+select,
+textarea,
+input,
+button {
+    font-size: 18px;
+}
+
+form {
+    margin-bottom: 20px;
+    border-bottom: 2 px solid lightgrey;
+    padding-bottom: 10px;
+}
+
+form p {
+    margin: 5px;
+}
