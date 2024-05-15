@@ -22,7 +22,19 @@ const initialState = [
 const studentsSlice = createSlice({
     name: 'students',
     initialState,
-    reducers: {}
+    reducers: {
+        studentAdded(state, action) {
+            state.push(action.payload)
+        },
+    },
 });
 
+const addStudent = newStudent => {
+    return {
+        type: 'students/studentAdded',
+        playload: newStudent,
+    }
+}
+
+export const { studentAdded } = studentsSlice.actions;
 export default studentsSlice.reducer;
