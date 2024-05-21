@@ -56,3 +56,8 @@ form {
 form p {
     margin: 5px;
 }
+
+.students-list {
+    display: flex;
+    flex-direction: column;
+}

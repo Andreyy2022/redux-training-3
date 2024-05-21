@@ -1,4 +1,5 @@
 import { useSelector } from 'react-redux';
+import { NewStudentForm } from './NewStudentForm';
 
 export const StudentsList = () => {
     const students = useSelector((state) => state.students);
@@ -15,8 +16,11 @@ export const StudentsList = () => {
 
     return (
         <div>
-            <h2>Students</h2>
-            {dispStudents}
+            <NewStudentForm />
+            <div>
+                <h2>Students</h2>
+                {dispStudents}
+            </div>
         </div>
     );
 }
