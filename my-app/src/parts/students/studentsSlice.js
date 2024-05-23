@@ -28,13 +28,13 @@ const studentsSlice = createSlice({
         },
     },
 });
-
+/*
 const addStudent = newStudent => {
     return {
         type: 'students/studentAdded',
         playload: newStudent,
     }
 }
-
+*/
 export const { studentAdded } = studentsSlice.actions;
 export default studentsSlice.reducer;
