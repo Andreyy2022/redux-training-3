@@ -61,3 +61,18 @@ form p {
     display: flex;
     flex-direction: column;
 }
+
+.students-excerpt {
+    margin-top: 30px;
+    border: 1px solid gray;
+    border-radius: 5px;
+    padding: 10;
+}
+
+.link-btn {
+    border: 1.5px solid gray;
+    border-radius: 10px;
+    background-color: coral;
+    color: black;
+    padding: 1px 12px 1px 12px;
+}

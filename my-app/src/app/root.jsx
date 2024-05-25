@@ -1,11 +1,13 @@
-import {Outlet} from 'react-router-dom';
+import {NavLink, Outlet} from 'react-router-dom';
 
 function Root() {
     return (
         <div id="main">
             <div id="menu">
                 <nav>
-                    <a>Students</a>
+                    <NavLink to="/students" end>
+                        Students
+                    </NavLink>
                     <a>Teachers</a>
                 </nav>
             </div>
