@@ -26,6 +26,17 @@ const studentsSlice = createSlice({
         studentAdded(state, action) {
             state.push(action.payload)
         },
+        studentUpdated(state, action) {
+            const { id, title, name, surname, age, occupation } = action.payload;
+            const desireStudent = state.find(student => student.id === id);
+            if (desireStudent) {
+                desireStudent.title = title;
+                desireStudent.name = name;
+                desireStudent.surname = surname;
+                desireStudent.age = age;
+                desireStudent.occupation = occupation;
+            }
+        },
     },
 });
 /*
@@ -36,5 +47,5 @@ const addStudent = newStudent => {
     }
 }
 */
-export const { studentAdded } = studentsSlice.actions;
+export const { studentAdded, studentUpdated } = studentsSlice.actions;
 export default studentsSlice.reducer;
