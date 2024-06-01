@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 export const StudentPage = () => {
     let params = useParams();
@@ -20,6 +20,9 @@ export const StudentPage = () => {
             <p>Surname: {student.surname}</p>
             <p>Age: {student.age}</p>
             <p>Occupation: {student.occupation}</p>
+            <Link to={`/editStudent/${student.id}`} className='link-btn'>
+                edit
+            </Link>
         </div>
     );
 }
