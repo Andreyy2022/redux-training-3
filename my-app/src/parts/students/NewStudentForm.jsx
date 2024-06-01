@@ -21,14 +21,13 @@ export const NewStudentForm = () => {
     const onSaveStudentClick = () => {
         if (title && name && surname && age && occupation) {
             dispatch(
-                studentAdded({
-                    id: nanoid(),
+                studentAdded(
                     title,
                     name,
                     surname,
                     age,
                     occupation
-                })
+                )
             );
 
             setTitle('');

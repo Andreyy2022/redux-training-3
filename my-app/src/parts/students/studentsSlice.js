@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { nanoid } from 'nanoid';
 
 const initialState = [
     {
@@ -23,8 +24,22 @@ const studentsSlice = createSlice({
     name: 'students',
     initialState,
     reducers: {
-        studentAdded(state, action) {
-            state.push(action.payload)
+        studentAdded: {
+            reducer(state, action) {
+                state.push(action.payload);
+            },
+            prepare(title, name, surname, age, occupation) {
+                return {
+                    payload: {
+                        id: nanoid(),
+                        title,
+                        name,
+                        surname,
+                        age,
+                        occupation,
+                    },
+                }
+            },
         },
         studentUpdated(state, action) {
             const { id, title, name, surname, age, occupation } = action.payload;
@@ -39,13 +54,6 @@ const studentsSlice = createSlice({
         },
     },
 });
-/*
-const addStudent = newStudent => {
-    return {
-        type: 'students/studentAdded',
-        playload: newStudent,
-    }
-}
-*/
+
 export const { studentAdded, studentUpdated } = studentsSlice.actions;
 export default studentsSlice.reducer;
