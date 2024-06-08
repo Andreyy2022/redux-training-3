@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { nanoid } from "@reduxjs/toolkit";
-import{ useDispatch } from 'react-redux';
+import{ useDispatch, useSelector } from 'react-redux';
 import { studentAdded } from "./studentsSlice";
 
 export const NewStudentForm = () => {
@@ -9,14 +9,18 @@ export const NewStudentForm = () => {
     const [surname, setSurname] = useState('');
     const [age, setAge] = useState(0);
     const [occupation, setOccupation] = useState('');
+    const [teacherId, setTeacherId] = useState('');
 
     const dispatch = useDispatch();
+
+    const teachers = useSelector((state) => state.teachers);
 
     const onTitleChange = (e) => setTitle(e.target.value);
     const onNameChange = (e) => setName(e.target.value);
     const onSurnameChange = (e) => setSurname(e.target.value);
     const onAgeChange = (e) => setAge(e.target.value);
     const onOccupationChange = (e) => setOccupation(e.target.value);
+    const onTeacherChange = (e) => setTeacherId(e.target.value);
 
     const onSaveStudentClick = () => {
         if (title && name && surname && age && occupation) {
@@ -26,7 +30,8 @@ export const NewStudentForm = () => {
                     name,
                     surname,
                     age,
-                    occupation
+                    occupation,
+                    teacherId
                 )
             );
 
