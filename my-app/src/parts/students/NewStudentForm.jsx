@@ -43,6 +43,12 @@ export const NewStudentForm = () => {
         }
     }
 
+    const teachersList = teachers.map((teacher) => (
+        <option key={teacher.id} value={teacher.id}>
+            {teacher.name}
+        </option>
+    ));
+
     return (
         <div>
             <h2>Add a New Student</h2>
@@ -55,6 +61,13 @@ export const NewStudentForm = () => {
                         value={title}
                         onChange={onTitleChange}
                     />
+                </p>
+                <p>
+                    <label htmlFor="studTeacher">Teacher:</label>
+                    <select id="studTeacher" value={teacherId} onChange={onTeacherChange}>
+                        <option value=""></option>
+                        {teachersList}
+                    </select>
                 </p>
                 <p>
                     <label htmlFor="studentName">Name </label>
