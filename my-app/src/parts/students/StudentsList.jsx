@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux';
 import { NewStudentForm } from './NewStudentForm';
 import { Link } from 'react-router-dom';
+import { TeacherOfStud } from './TeacherOfStud';
 
 export const StudentsList = () => {
     const students = useSelector((state) => state.students);
@@ -8,6 +9,7 @@ export const StudentsList = () => {
     const dispStudents = students.map((student) => (
         <div key={student.id} className='student-excerpt'>
             <h3>{student.title}</h3>
+            <TeacherOfStud teacherId={student.teacher} />
             <p>occupation: {student.occupation.substring(0, 100)}</p>
             <Link to={`/students/${student.id}`} className="link-btn">
                 view
