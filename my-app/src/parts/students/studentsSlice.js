@@ -24,6 +24,13 @@ const studentsSlice = createSlice({
     name: 'students',
     initialState,
     reducers: {
+        voteClicked(state, action) {
+            const {studentId, vote} = action.payload;
+            const currentStudent = state.find(student => student.id === studentId);
+            if (currentStudent) {
+                currentStudent.votes[vote]++;
+            }
+        },
         studentAdded: {
             reducer(state, action) {
                 state.push(action.payload);
@@ -56,5 +63,5 @@ const studentsSlice = createSlice({
     },
 });
 
-export const { studentAdded, studentUpdated } = studentsSlice.actions;
+export const { voteClicked, studentAdded, studentUpdated } = studentsSlice.actions;
 export default studentsSlice.reducer;
