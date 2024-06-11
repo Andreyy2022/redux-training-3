@@ -2,8 +2,8 @@ import { useDispatch } from 'react-redux';
 import { voteClicked } from './studentsSlice';
 
 const votesObj = {
-    leader: 'GL',
-    captain: 'TC',
+    leader: 'group leader',
+    captain: 'sport captain teams',
 }
 
 export const UserVotes = ({student}) => {
