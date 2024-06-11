@@ -9,6 +9,10 @@ const initialState = [
         surname: 'Ivanov',
         age: '25',
         occupation: 'frontend',
+        votes: {
+            leader: 0,
+            captain: 0,
+        },
     },
     {
         id: '2',
@@ -17,6 +21,10 @@ const initialState = [
         surname: 'Petrov',
         age: '30',
         occupation: 'backend',
+        votes: {
+            leader: 0,
+            captain: 0,
+        },
     },
 ]
 
@@ -45,6 +53,10 @@ const studentsSlice = createSlice({
                         age,
                         occupation,
                         teacher: teacherId,
+                        votes: {
+                            leader: 0,
+                            captain: 0,
+                        },
                     },
                 }
             },
