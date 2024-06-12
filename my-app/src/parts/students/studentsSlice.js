@@ -1,32 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { nanoid } from 'nanoid';
 
-const initialState = [
-    {
-        id: '1',
-        title: 'student1',
-        name: 'Ivan',
-        surname: 'Ivanov',
-        age: '25',
-        occupation: 'frontend',
-        votes: {
-            leader: 0,
-            captain: 0,
-        },
-    },
-    {
-        id: '2',
-        title: 'student2',
-        name: 'Petr',
-        surname: 'Petrov',
-        age: '30',
-        occupation: 'backend',
-        votes: {
-            leader: 0,
-            captain: 0,
-        },
-    },
-] 
+const initialState = {
+    students: [],
+    status: 'idle',
+    error: null,
+}
 
 const studentsSlice = createSlice({
     name: 'students',
@@ -34,14 +13,14 @@ const studentsSlice = createSlice({
     reducers: {
         voteClicked(state, action) {
             const {studentId, vote} = action.payload;
-            const currentStudent = state.find(student => student.id === studentId);
+            const currentStudent = state.students.find(student => student.id === studentId);
             if (currentStudent) {
                 currentStudent.votes[vote]++;
             }
         },
         studentAdded: {
             reducer(state, action) {
-                state.push(action.payload);
+                state.students.push(action.payload);
             },
             prepare(title, name, surname, age, occupation, teacherId) {
                 return {
@@ -63,7 +42,7 @@ const studentsSlice = createSlice({
         },
         studentUpdated(state, action) {
             const { id, title, name, surname, age, occupation } = action.payload;
-            const desireStudent = state.find(student => student.id === id);
+            const desireStudent = state.students.find(student => student.id === id);
             if (desireStudent) {
                 desireStudent.title = title;
                 desireStudent.name = name;
