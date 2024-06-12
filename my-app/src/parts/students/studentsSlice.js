@@ -26,7 +26,7 @@ const initialState = [
             captain: 0,
         },
     },
-]
+] 
 
 const studentsSlice = createSlice({
     name: 'students',
