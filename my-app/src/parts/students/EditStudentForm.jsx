@@ -3,13 +3,14 @@ import{ useDispatch } from 'react-redux';
 import { studentUpdated } from "./studentsSlice";
 import { useNavigate, useParams } from 'react-router-dom';
 import { useSelector } from "react-redux";
+import { selectStudentById } from "./studentsSlice";
 
 export const EditStudentForm = () => {
     let params = useParams();
     const {studentId} = params;
 
     const student = useSelector((state) => 
-        state.students.find((student) => student.id === studentId)
+        selectStudentById(state, studentId)
     );
 
     const [title, setTitle] = useState(student.title);

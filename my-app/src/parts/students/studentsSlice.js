@@ -56,3 +56,7 @@ const studentsSlice = createSlice({
 
 export const { voteClicked, studentAdded, studentUpdated } = studentsSlice.actions;
 export default studentsSlice.reducer;
+
+export const selectAllStudents = (state) => state.students.students;
+export const selectStudentById = (state, studentId) =>
+    state.students.students.find((student) => student.id === studentId);

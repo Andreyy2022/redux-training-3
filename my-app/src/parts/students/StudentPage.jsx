@@ -2,13 +2,14 @@ import { useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import { TeacherOfStud } from './TeacherOfStud';
 import { UserVotes } from './UserVotes';
+import { selectStudentById } from './studentsSlice';
 
 export const StudentPage = () => {
     let params = useParams();
     const {studentId} = params;
 
     const student = useSelector((state) => 
-        state.students.find((student) => student.id === studentId)
+        selectStudentById(state, studentId)
     );
 
     if (!student) {

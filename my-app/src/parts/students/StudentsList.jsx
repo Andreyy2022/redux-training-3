@@ -3,9 +3,10 @@ import { NewStudentForm } from './NewStudentForm';
 import { Link } from 'react-router-dom';
 import { TeacherOfStud } from './TeacherOfStud';
 import { UserVotes } from './UserVotes';
+import { selectAllStudents } from './studentsSlice';
 
 export const StudentsList = () => {
-    const students = useSelector((state) => state.students);0
+    const students = useSelector(selectAllStudents);
 
     const dispStudents = students.map((student) => (
         <div key={student.id} className='student-excerpt'>
