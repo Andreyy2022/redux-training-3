@@ -3,6 +3,7 @@ import {factory, oneOf, manyOf, primaryKey} from '@mswjs/data';
 import { nanoid } from 'nanoid';
 
 const teachNames = ['Федоров А.В.', 'Смирнов А.В.', 'Матрешкин А.В.'];
+const teachScience = ['математика', 'информатика', 'физика'];
 
 export const db = factory({
     student: {
@@ -32,9 +33,11 @@ export const db = factory({
 
 const createTeacherData = (num) => {
     const name = teachNames[num];
+    const science = teachScience[num];
 
     return {
         name: `${name}`,
+        science: `${science}`,
     }
 }
 
