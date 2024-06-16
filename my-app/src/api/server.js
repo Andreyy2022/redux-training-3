@@ -1,6 +1,7 @@
 import {setupWorker} from 'msw/browser';
 import {factory, oneOf, manyOf, primaryKey} from '@mswjs/data';
 import { nanoid } from 'nanoid';
+import {faker} from '@faker-js/faker';
 
 const teachNames = ['Федоров А.В.', 'Смирнов А.В.', 'Матрешкин А.В.'];
 const teachScience = ['математика', 'информатика', 'физика'];
@@ -43,6 +44,18 @@ const createTeacherData = (num) => {
 
 function getrandInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+const createStudentData = () => {
+    return {
+        title: `Studet${getRandInt(1, 100)}`,
+        name: faker.lorem.names({min: 1, max: 1}),
+        surname: faker.lorem.surnames({min: 1, max: 1}),
+        age: getRandInt(18, 65),
+        occupation: faker.lorem.occupations({min: 1, max: 1}),
+        votes: db.vote.create(),
+        teacher,
+    }
 }
 
 export const worker = setupWorker();
