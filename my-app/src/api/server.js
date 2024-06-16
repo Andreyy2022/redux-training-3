@@ -2,6 +2,7 @@ import {setupWorker} from 'msw/browser';
 import {factory, oneOf, manyOf, primaryKey} from '@mswjs/data';
 import { nanoid } from 'nanoid';
 
+const teachNames = ['Федоров А.В.', 'Смирнов А.В.', 'Матрешкин А.В.'];
 
 export const db = factory({
     student: {
@@ -28,4 +29,17 @@ export const db = factory({
         student: oneOf('student'),
     },
 });
+
+const createTeacherData = (num) => {
+    const name = teachNames[num];
+
+    return {
+        name: `${name}`,
+    }
+}
+
+function getrandInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 export const worker = setupWorker();
