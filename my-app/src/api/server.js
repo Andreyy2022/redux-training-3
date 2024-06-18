@@ -3,6 +3,9 @@ import {factory, oneOf, manyOf, primaryKey} from '@mswjs/data';
 import { nanoid } from 'nanoid';
 import {faker} from '@faker-js/faker';
 
+const NUM_TEACHERS = 3;
+const STUDS_PER_TEACHER = 3;
+
 const teachNames = ['Федоров А.В.', 'Смирнов А.В.', 'Матрешкин А.В.'];
 const teachScience = ['математика', 'информатика', 'физика'];
 
@@ -57,5 +60,19 @@ const createStudentData = () => {
         teacher,
     }
 }
+
+for (let i = 0; i < NUM_TEACHERS; i++) {
+    const newTeacher = db.teacher.create(createTeacherData(i));
+
+    for (let j = 0; j < STUDS_PER_TEACHER; j++) {
+        const newTeacher = createStudentData(newTeacher);
+        db.student.create(newStudent);
+    }
+}
+
+const serializeStudent = (student) => ({
+    ...student,
+    teacher: student.teacher.id,
+});
 
 export const worker = setupWorker();
