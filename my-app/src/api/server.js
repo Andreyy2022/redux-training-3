@@ -2,9 +2,12 @@ import {setupWorker} from 'msw/browser';
 import {factory, oneOf, manyOf, primaryKey} from '@mswjs/data';
 import { nanoid } from 'nanoid';
 import {faker} from '@faker-js/faker';
+import {http, HttpResponse, delay} from 'msw';
 
 const NUM_TEACHERS = 3;
 const STUDS_PER_TEACHER = 3;
+
+const ARTIFICIAL_DELAY_MS = 2000;
 
 const teachNames = ['Федоров А.В.', 'Смирнов А.В.', 'Матрешкин А.В.'];
 const teachScience = ['математика', 'информатика', 'физика'];
@@ -75,4 +78,13 @@ const serializeStudent = (student) => ({
     teacher: student.teacher.id,
 });
 
-export const worker = setupWorker();
+export const handlers = [
+    http.get('/fakeServer/students', async() => {
+        const students = db.student.getAll().map(serializeStudent);
+        await delay(ARTIFICIAL_DELAY_MS);
+
+        return HttpResponse.json(students);
+    }),
+];
+
+export const worker = setupWorker(...handlers);
