@@ -1,11 +1,21 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { nanoid } from 'nanoid';
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import { client } from '../../api/client';
 
 const initialState = {
     students: [],
     status: 'idle',
     error: null,
 }
+
+export const fetchStudens = createAsyncThunk(
+    'students/fetchStudents',
+    async () => {
+        const response = await client.get('/fakeServer/students');
+        return response.data;
+    }
+);
 
 const studentsSlice = createSlice({
     name: 'students',
