@@ -1,12 +1,23 @@
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { NewStudentForm } from './NewStudentForm';
 import { Link } from 'react-router-dom';
 import { TeacherOfStud } from './TeacherOfStud';
 import { UserVotes } from './UserVotes';
-import { selectAllStudents } from './studentsSlice';
+import { selectAllStudents, fetchStudens } from './studentsSlice';
+import { useEffect } from 'react';
 
 export const StudentsList = () => {
+
+    const dispatch = useDispatch();
+
     const students = useSelector(selectAllStudents);
+    const studentStatus = useSelector((state) => state.students.status);
+
+    useEffect(() => {
+        if (studentStatus === 'idle') {
+            dispatch(fetchStudens());
+        }
+    }, [studentStatus, dispatch]);
 
     const dispStudents = students.map((student) => (
         <div key={student.id} className='student-excerpt'>
