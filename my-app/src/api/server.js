@@ -48,13 +48,13 @@ const createTeacherData = (num) => {
     }
 }
 
-function getrandInt(min, max) {
+function getRandInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 const createStudentData = () => {
     return {
-        title: `Studet${getRandInt(1, 100)}`,
+        title: `Student${getRandInt(1, 100)}`,
         name: faker.lorem.names({min: 1, max: 1}),
         surname: faker.lorem.surnames({min: 1, max: 1}),
         age: getRandInt(18, 65),
@@ -64,20 +64,6 @@ const createStudentData = () => {
     }
 }
 
-for (let i = 0; i < NUM_TEACHERS; i++) {
-    const newTeacher = db.teacher.create(createTeacherData(i));
-
-    for (let j = 0; j < STUDS_PER_TEACHER; j++) {
-        const newTeacher = createStudentData(newTeacher);
-        db.student.create(newStudent);
-    }
-}
-
-const serializeStudent = (student) => ({
-    ...student,
-    teacher: student.teacher.id,
-});
-
 export const handlers = [
     http.get('/fakeServer/students', async() => {
         const students = db.student.getAll().map(serializeStudent);
@@ -86,5 +72,19 @@ export const handlers = [
         return HttpResponse.json(students);
     }),
 ];
+
+for (let i = 0; i < NUM_TEACHERS; i++) {
+    const newTeacher = db.teacher.create(createTeacherData(i));
+
+    for (let j = 0; j < STUDS_PER_TEACHER; j++) {
+        const newStudent = createStudentData(newTeacher);
+        db.student.create(newStudent);
+    }
+}
+
+const serializeStudent = (student) => ({
+    ...student,
+    teacher: student.teacher.id,
+});
 
 export const worker = setupWorker(...handlers);
