@@ -55,10 +55,10 @@ function getRandInt(min, max) {
 const createStudentData = () => {
     return {
         title: `Student${getRandInt(1, 100)}`,
-        name: faker.lorem.names({min: 1, max: 1}),
-        surname: faker.lorem.surnames({min: 1, max: 1}),
+        name: () => faker.name.name(),
+        surname: () => faker.name.surnames(),
         age: getRandInt(18, 65),
-        occupation: faker.lorem.occupations({min: 1, max: 1}),
+        occupation: () => faker.lorem.occupation(), // is it ok like that?
         votes: db.vote.create(),
         teacher,
     }
