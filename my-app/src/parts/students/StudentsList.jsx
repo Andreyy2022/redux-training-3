@@ -3,7 +3,7 @@ import { NewStudentForm } from './NewStudentForm';
 import { Link } from 'react-router-dom';
 import { TeacherOfStud } from './TeacherOfStud';
 import { UserVotes } from './UserVotes';
-import { selectAllStudents, fetchStudens } from './studentsSlice';
+import { selectAllStudents, fetchStudents } from './studentsSlice';
 import { useEffect } from 'react';
 
 export const StudentsList = () => {
@@ -15,7 +15,7 @@ export const StudentsList = () => {
 
     useEffect(() => {
         if (studentStatus === 'idle') {
-            dispatch(fetchStudens());
+            dispatch(fetchStudents());
         }
     }, [studentStatus, dispatch]);
 

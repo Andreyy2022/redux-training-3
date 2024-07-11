@@ -9,7 +9,7 @@ const initialState = {
     error: null,
 }
 
-export const fetchStudens = createAsyncThunk(
+export const fetchStudents = createAsyncThunk(
     'students/fetchStudents',
     async () => {
         const response = await client.get('/fakeServer/students');
