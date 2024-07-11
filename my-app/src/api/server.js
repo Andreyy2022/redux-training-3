@@ -52,13 +52,13 @@ function getRandInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-const createStudentData = () => {
+const createStudentData = (teacher) => {
     return {
         title: `Student${getRandInt(1, 100)}`,
         name: () => faker.name.name(),
-        surname: () => faker.name.surnames(),
+        surname: () => faker.name.surname(),
         age: getRandInt(18, 65),
-        occupation: () => faker.lorem.occupation(), // is it ok like that?
+        occupation: () => faker.lorem.words(10), 
         votes: db.vote.create(),
         teacher,
     }
