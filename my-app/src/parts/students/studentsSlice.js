@@ -62,6 +62,21 @@ const studentsSlice = createSlice({
             }
         },
     },
+    extraReducers(builder) {
+        builder
+            .addCase(fetchStudents.pending, (state) => {
+                state.status = 'in progress'
+            })
+            .addCase(fetchStudents.fulfilled, (state, action) => {
+                state.status = 'success'
+                state.students = state.students.concat(action.payload)
+            })
+            .addCase(fetchStudents.rejected, (state, action) => {
+                state.status = 'fail'
+                state.error = action.error.message
+            })
+    },
+
 });
 
 export const { voteClicked, studentAdded, studentUpdated } = studentsSlice.actions;
