@@ -58,7 +58,7 @@ const createStudentData = (teacher) => {
         name: () => faker.name.name(),
         surname: () => faker.name.surname(),
         age: getRandInt(18, 65),
-        occupation: () => faker.lorem.words(10), 
+        occupation: faker.lorem.sentences({ min: 3, max: 5 }), 
         votes: db.vote.create(),
         teacher,
     }
